@@ -1,10 +1,11 @@
 {
-  "name": "webpack",
+  "name": "webpack_grow",
   "version": "1.0.0",
   "description": "a simple webpack project grow to stronger",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack --config webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -22,7 +23,9 @@
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
     "clean-webpack-plugin": "^0.1.17",
-    "vue": "^2.5.2"
+    "path": "^0.12.7",
+    "vue": "^2.5.2",
+    "webpack": "^3.8.1"
   },
   "dependencies": {},
   "bugs": {
