@@ -1,8 +1,10 @@
 const path = require("path");
-var pathDir = require("./path_dir");
+const pagesArr = require("./pagesArr");
+const pathDir = require("./path_dir");
+var pagesDir = {};
 
-module.exports= {
-    'alert/index':path.resolve(pathDir.root,"./src/pages/alert/index.js"),
-    'index/index':path.resolve(pathDir.root,"./src/pages/index/index.js"),
-    'es6/index':path.resolve(pathDir.root,"./src/pages/es6/index.js"),
-}
+
+pagesArr.forEach((page) => {
+    pagesDir[page] = path.resolve(pathDir.pagesDir, page + '/index');
+});
+module.exports = pagesDir;
