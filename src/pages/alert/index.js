@@ -3,6 +3,6 @@
  */
 define(["lib/testLib"],function (test) {
     let a =11;
-    console.log(`this is1  a:${a}`)
+    console.log(`this is  a:${a}`)
     console.log(test(1,2));
 });
