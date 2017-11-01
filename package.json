@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack --config webpack.config.js",
-    "start": "webpack-dev-server --config ./webpack.config.js --open --hot"
+    "start": "webpack-dev-server --config ./webpack.config.js --open --hot",
+    "dll":"webpack --config ./webpack-config/webpack.dll.js"
   },
   "repository": {
     "type": "git",
@@ -32,7 +33,9 @@
     "webpack": "^3.8.1",
     "webpack-dev-server": "^2.9.3"
   },
-  "dependencies": {},
+  "dependencies": {
+    "jquery": "^3.2.1"
+  },
   "bugs": {
     "url": "https://github.com/songkai2012/webpack/issues"
   },
