@@ -17,16 +17,13 @@ let vendor = [
 ];
 
 module.exports = {
+    entry:{
+        vendor:vendor
+    },
     output:{
         path:pathDir.dll,
-        filename:'[name].js',
+        filename:'[name].dll.js',
         library: '[name]_[hash]',
-    },
-    entry:{
-        vendor:[
-            "jquery",
-            "vue"
-        ]
     },
     plugins:[
         new webpack.DllPlugin({

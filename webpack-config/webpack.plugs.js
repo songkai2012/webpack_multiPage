@@ -1,9 +1,15 @@
 const path = require("path");
 const pathDir = require("./path_dir");
-const CleanWebpackConfig = require("clean-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const webpack = require("webpack");
 const pagesArr = require("./pagesArr");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
+const webpack = require("webpack");
+
+var pagesArrTemp = pagesArr.filter(function () {
+    return true
+});
+pagesArrTemp.push('webpack-runtime');
 
 let cleanOption = {
     root:pathDir.root,
@@ -12,55 +18,48 @@ let cleanOption = {
     watch:false
 };
 let plugsConf = [
-    new webpack.DllReferencePlugin({
-        //manifest:require(path.resolve(pathDir.root,'./dll/manifest.json')),
-        manifest:path.resolve(pathDir.dll,'./manifest.json'),
-        //context:pathDir.root
+/*    new webpack.DllReferencePlugin({
+        manifest:require(path.resolve(pathDir.dll,'./manifest.json')),
+        context:pathDir.root
     }),
+     new AddAssetHtmlPlugin({
+        filepath: path.resolve(pathDir.dll,'.*.dll.js'),
+    }),*/
     //new CleanWebpackConfig(['./dist'],cleanOption),
     new webpack.HotModuleReplacementPlugin(),
-    /*    new webpack.optimize.CommonsChunkPlugin({
-            name:'common',
-            filename:'commons/common.[hash].js',
-            minChunks:2
-        }),
-    /!*    new webpack.optimize.CommonsChunkPlugin({
-            name: 'mainifest',
-            chunks: ['/common/']
-        }),*!/
-        new webpack.optimize.CommonsChunkPlugin({
-            name:"runtime",
-            filename:'commons/webpack.runtime.[hash].js'
-        }),
-        //new webpack.optimize.CommonsChunkPlugin('manifest',['common','runtime']),*/
-/*    new webpack.optimize.CommonsChunkPlugin({
-        name:'vendor',
-        filename:'[name].[hash:8].js',
-        minChunks:Infinity
-    }),*/
 
     new webpack.optimize.CommonsChunkPlugin({
+        name:'vendor',
+        chunks:['vendor'],
+        filename:'dll.[chunkhash:8].js',
+        minChunks:Infinity
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
         name:'commons',
-        filename:'[name].[chunkhash].js',
+        chunks:pagesArrTemp,
+        filename:'[name].[chunkhash:8].js',
         minChunks:2
     }),
 
-
-
     new webpack.optimize.CommonsChunkPlugin({
         name: 'webpack-runtime',
-        filename: 'webpack-runtime.[hash].js',
+        filename: 'webpack-runtime.[hash:8].js',
     }),
-
+    //new webpack.optimize.CommonsChunkPlugin('manifest',['common','runtime']),
 ];
 
 pagesArr.forEach((page)=>{
+/*    new AddAssetHtmlPlugin({
+        filepath:path.resolve(pathDir.pagesDir,page),
+        filepath: path.resolve(pathDir.dll,'.*.dll.js'),
+    });*/
+
     const htmlPage = new HtmlWebpackPlugin({
         filename:`${page}/index.html`,
         template:path.resolve(pathDir.pagesDir,`./${page}/page.html`),
         inject:'body',
         hash:true,
-        chunks:['webpack-runtime',page,'commons'],
+        chunks:['webpack-runtime',page,'commons','vendor'],
 /*        chunksSortMode: function (chunk1, chunk2) {
             var order = ['webpack-runtime', page, 'commons'];
             var order1 = order.indexOf(chunk1.names[0]);
@@ -68,8 +67,8 @@ pagesArr.forEach((page)=>{
             return order1 - order2;
         }*/
     });
-
     plugsConf.push(htmlPage);
+    //plugsConf.push(a);
 });
 
 module.exports = plugsConf;
