@@ -29,7 +29,7 @@ let plugsConf = [
 pagesArr.forEach((page)=>{
     const htmlPage = new HtmlWebpackPlugin({
         filename:`${page}/index.html`,
-        template:path.resolve(pathDir.pagesDir,`./${page}/page.html`),
+        template:path.resolve(pathDir.pagesDir,`${page}/page.html`),
         inject:'body',
         hash:true,
         chunks:['webpack-runtime',page,'commons','vendor'],

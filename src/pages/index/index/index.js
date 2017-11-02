@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2017/10/12.
  */
-require("./test.css");
+require("./page.less");
 var path = require("path");
 var lib = require('lib/testLib');
 var jq = require("jquery");
