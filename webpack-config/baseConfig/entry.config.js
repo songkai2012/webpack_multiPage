@@ -1,6 +1,6 @@
 const path = require("path");
-const pagesArr = require("./pagesArr");
-const pathDir = require("./path_dir");
+const pagesArr = require("../paramsConfig/pagesArr");
+const pathDir = require("../paramsConfig/path_dir");
 var pagesDir = {};
 
 

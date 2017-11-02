@@ -1,5 +1,5 @@
 const webpack = require("webpack");
-const pathDir = require("./path_dir");
+const pathDir = require("./paramsConfig/path_dir");
 const path = require("path");
 
 const fs = require("fs");

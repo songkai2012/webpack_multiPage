@@ -5,10 +5,11 @@ require("./npm-cmd/build-before");
 
 module.exports={
     entry:require("./webpack-config/entryAttrDll.config"),
-    output:require("./webpack-config/output.config"),
-    module:require("./webpack-config/module.config"),
-    resolve:require('./webpack-config/resolve.config'),
-    plugins:require("./webpack-config/webpack.plugs"),
+    output:require("./webpack-config/baseConfig/output.config"),
+    module:require("./webpack-config/module.config.product"),
+    resolve:require('./webpack-config/baseConfig/resolve.config'),
+    plugins:require("./webpack-config/webpack.plugs.product"),
+    devtool:'cheap-module-source-map',
     devServer: {
         contentBase: './',
         host: 'localhost',
