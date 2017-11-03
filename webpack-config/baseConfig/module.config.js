@@ -6,10 +6,10 @@ module.exports = {
             test:'/\.js$/',
             loader:'babel-loader'
         },
-        {
+/*        {
             test:/\.less/,
             use:['style-loader','css-loader','less-loader']
-        },
+        },*/
 /*        {
             test:/\.less/,
             use:[

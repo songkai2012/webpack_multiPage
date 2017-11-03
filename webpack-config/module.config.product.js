@@ -1,7 +1,25 @@
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const baseModuleConfig = require("./baseConfig/module.config");
+
+baseModuleConfig.rules.push(
+    {
+        test:/\.less/,
+        use:ExtractTextPlugin.extract([
+            {
+                loader:'css-loader'
+            },
+            {
+                loader:'less-loader'
+            }
+        ])
+    }
+);
+
+module.exports = baseModuleConfig;
+/*
 module.exports = {
     rules: [
-  /*      {
+  /!*      {
             test: /\.js$/,
             enforce: 'pre',
             loader: 'eslint-loader',
@@ -11,7 +29,7 @@ module.exports = {
                 formatter: eslintFormatter,
                 fix: true,
             }*!/
-        },*/
+        },*!/
         {
             test: /\.js$/,
             //include: dirVars.srcRootDir,
@@ -67,9 +85,9 @@ module.exports = {
                         '-autoprefixer': true,
                     },
                 },
-           /*     {
+           /!*     {
                     loader: 'postcss-loader',
-                },*/
+                },*!/
                 {
                     loader: 'less-loader',
                 },
@@ -87,12 +105,12 @@ module.exports = {
                         '-autoprefixer': true,
                     },
                 },
-               /* {
+               /!* {
                     loader: 'postcss-loader',
-                },*/
+                },*!/
             ]),
         }
 
     ],
 
-};
+};*/
