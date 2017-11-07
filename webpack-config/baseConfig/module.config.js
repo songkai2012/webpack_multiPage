@@ -1,29 +1,45 @@
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var eslintFormatter = require('eslint-friendly-formatter');
+var pathDir = require('../paramsConfig/path_dir');
+
 module.exports = {
-    noParse: /jquery|lodash/,
+    noParse: /jquery|lodash|vue/,
     rules: [
         {
             test:'/\.js$/',
-            loader:'babel-loader'
-        },
-/*        {
-            test:/\.less/,
-            use:['style-loader','css-loader','less-loader']
-        },*/
-/*        {
-            test:/\.less/,
+            include:pathDir.src,
             use:[
                 {
-                    loader:'style-loader'
+                    loader:'babel-loader',
+                    options:{
+                        cacheDirectory: true,
+                        plugins: ['transform-runtime'],
+                    }
                 },
                 {
-                    loader:'css-loader'
-                },
-                {
-                    loader:'less-loader'
-                },
-            ]
-        }*/
-    ]
+                    loader:'eslint-loader',
+                    options:{
+                        formatter: eslintFormatter,
+                        fix: true,
+                    }
 
+                }
+            ]
+        },
+        {
+            test: /\.html$/,
+            loader: 'html-loader',
+        },
+        {
+            test: /\.(png|jpg|gif)$/,
+            use:[
+                {
+                    loader:'url-loader',
+                    options:{
+                        limit: 8192,
+                        name: './static/_img/[hash].[ext]',
+                    }
+                }
+            ]
+        }
+    ]
 };

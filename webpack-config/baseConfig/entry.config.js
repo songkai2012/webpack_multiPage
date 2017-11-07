@@ -5,7 +5,6 @@ var pagesDir = {};
 
 
 pagesArr.forEach((page) => {
-    console.log(page)
     pagesDir[page] = path.resolve(pathDir.pagesDir, page + '/index');
 });
 
