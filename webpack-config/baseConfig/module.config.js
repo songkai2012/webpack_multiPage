@@ -2,7 +2,7 @@ var eslintFormatter = require('eslint-friendly-formatter');
 var pathDir = require('../paramsConfig/path_dir');
 
 module.exports = {
-    noParse: /jquery|lodash|vue/,
+    noParse: /jquery|lodash/,
     rules: [
         {
             test:'/\.js$/',
