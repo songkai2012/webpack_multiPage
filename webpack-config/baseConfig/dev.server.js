@@ -9,7 +9,11 @@ module.exports = {
     proxy:{
         "/":{
             target:"http://www.baidu.com/",
-            changeOrigin:true
+            changeOrigin:true,
+            "header":{
+                "host":"www.baidu.com",
+                "origin":'http://www.baidu.com/',
+            }
         }
     }
 };

@@ -1,5 +1,6 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const baseModuleConfig = require("./baseConfig/module.config");
+const utils = require('./baseConfig/utils');
 
 baseModuleConfig.rules.push(
     {
@@ -21,7 +22,7 @@ baseModuleConfig.rules.push(
 
 baseModuleConfig.rules.push(
     {
-        test:/\.sass$/,
+        test:/\.(sass|scss)$/,
         use:ExtractTextPlugin.extract([
             {
                 loader:'css-loader',
@@ -56,4 +57,24 @@ baseModuleConfig.rules.push(
         ]),
     }
 );
+
+baseModuleConfig.rules.push(
+    {
+        test: /\.vue$/,
+        loader:'vue-loader',
+        options:{
+            loaders: utils.cssLoaders({
+                sourceMap: true,
+                extract: true
+            }),
+            transformToRequire: {
+                video: 'src',
+                source: 'src',
+                img: 'src',
+                image: 'xlink:href'
+            }
+        }
+    }
+);
+
 module.exports = baseModuleConfig;

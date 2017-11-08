@@ -16,12 +16,12 @@ let plugsConf = [
         Vue:'vue',
         axios:'axios'
     }),
-    new webpack.optimize.CommonsChunkPlugin({
+/*    new webpack.optimize.CommonsChunkPlugin({
         name:'vendor',
         chunks:['vendor'],
         filename:'dll.[chunkhash:8].js',
         minChunks:Infinity
-    }),
+    }),*/
     new webpack.optimize.CommonsChunkPlugin({
         name:'commons',
         chunks:pagesArr,

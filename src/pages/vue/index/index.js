@@ -1,7 +1,13 @@
+import footer from "resource/components/test.vue";
+
+
 new vue({
     el:"#app",
     data:{
         msg:"this is a vue data"
+    },
+    components:{
+        foot1:footer,
     },
     created:function () {
         $(".container").css({"width":'100px',"height":'100px',"background":"red"});

@@ -1,5 +1,5 @@
 const entry = require("./baseConfig/entry.config");
-entry.vendor = ["jquery",'vue','axios'];
+//entry.vendor = ["jquery",'vue','axios'];
 
 /*
 仅为dll方案不通的替补方案

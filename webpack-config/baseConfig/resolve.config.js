@@ -8,8 +8,9 @@ module.exports={
     alias:{
         lib:path.resolve(pathDir.root,"./src/lib"),
         root:pathDir.root,
-        resource:pathDir.resource,
+        'resource':pathDir.resource,
         vue:'vue/dist/vue.common.js'
-    }
-}
+    },
+    extensions: ['.js', '.css', '.less','.vue'],
+};
 
