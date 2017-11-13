@@ -1,6 +1,7 @@
 'use strict'
 const path = require('path')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const autoprefixer = require("autoprefixer")
 
 /*exports.assetsPath = function (_path) {
   const assetsSubDirectory = process.env.NODE_ENV === 'production'
@@ -15,10 +16,10 @@ exports.cssLoaders = function (options) {
   const cssLoader = {
     loader: 'css-loader',
     options: {
-      minimize: process.env.NODE_ENV === 'production',
-      sourceMap: options.sourceMap
+      minimize: process.env.NODE_ENV == 'production',
+      sourceMap: process.env.NODE_ENV == 'production',
     }
-  }
+  };
 
   // generate loader string to be used with extract text plugin
   function generateLoaders (loader, loaderOptions) {
@@ -27,7 +28,8 @@ exports.cssLoaders = function (options) {
       loaders.push({
         loader: loader + '-loader',
         options: Object.assign({}, loaderOptions, {
-          sourceMap: options.sourceMap
+          sourceMap: options.sourceMap,
+            plugins:  () => [autoprefixer({ browsers:['last 4 versions'] })],
         })
       })
     }

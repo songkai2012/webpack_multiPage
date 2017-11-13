@@ -1,6 +1,7 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const baseModuleConfig = require("./baseConfig/module.config");
 const utils = require('./baseConfig/utils');
+const autoprefixer = require("autoprefixer");
 
 baseModuleConfig.rules.push(
     {
@@ -11,6 +12,13 @@ baseModuleConfig.rules.push(
                 options: {
                     minimize: true,
                     '-autoprefixer': true,
+                },
+            },
+            {
+                loader: 'postcss-loader',
+                options: {
+                    sourceMap: true,
+                    plugins: () => [autoprefixer({ browsers:['last 2 versions'] })],
                 },
             },
             {
@@ -32,9 +40,16 @@ baseModuleConfig.rules.push(
                 },
             },
             {
+                loader: 'postcss-loader',
+                options: {
+                    sourceMap: true,
+                    plugins: () => [autoprefixer({ browsers:['last 2 versions'] })],
+                },
+            },
+            {
                 loader:'sass-loader'
             }
-        ])
+        ]),
     }
 );
 
@@ -51,9 +66,13 @@ baseModuleConfig.rules.push(
                     '-autoprefixer': true,
                 },
             },
-            /* {
+             {
                  loader: 'postcss-loader',
-             },*/
+                 options: {
+                     sourceMap: true,
+                     plugins: () => [autoprefixer({ browsers:['last 2 versions'] })],
+                 },
+             },
         ]),
     }
 );

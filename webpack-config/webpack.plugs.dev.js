@@ -11,7 +11,7 @@ let cleanOption = {
 };
 pluginsConfig.push(new CleanWebpackConfig(['./dist'],cleanOption));
 pluginsConfig.push(new webpack.DefinePlugin({
-    IS_PRODUCTION: true,
+    IS_PRODUCTION: false,
 }));
 //将第三方库以Dll方式打包注入 目前只有单页方案AddAssetHtmlPlugin
 /*    new webpack.DllReferencePlugin({

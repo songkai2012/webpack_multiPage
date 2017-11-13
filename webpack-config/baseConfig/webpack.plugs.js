@@ -7,6 +7,7 @@ const webpack = require("webpack");
 
 let plugsConf = [
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.EnvironmentPlugin(['NODE_ENV']),
     new webpack.ProvidePlugin({
         $:'jquery',
         jQuery:'jquery',
@@ -16,7 +17,7 @@ let plugsConf = [
         Vue:'vue',
         axios:'axios'
     }),
-/*    new webpack.optimize.CommonsChunkPlugin({
+ /*   new webpack.optimize.CommonsChunkPlugin({
         name:'vendor',
         chunks:['vendor'],
         filename:'dll.[chunkhash:8].js',

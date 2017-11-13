@@ -1,4 +1,4 @@
-import footer from "resource/components/test.vue";
+import {common as _} from "resource/scripts/index.js";
 
 
 new vue({
@@ -6,11 +6,7 @@ new vue({
     data:{
         msg:"this is a vue data"
     },
-    components:{
-        foot1:footer,
-    },
     created:function () {
-        $(".container").css({"width":'100px',"height":'100px',"background":"red"});
         $.ajax({
             url:'/',
             data:{
@@ -27,6 +23,7 @@ new vue({
         });
     },
     mounted:()=>{
+        console.log(_)
         axios({
             url:'/',
             params:{

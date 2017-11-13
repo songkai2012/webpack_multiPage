@@ -5,6 +5,6 @@ const webpack = require('webpack');
 pluginsConfig.push(new ExtractTextPlugin((`index/[name].[contenthash:8].css`)));
 pluginsConfig.push(new webpack.HashedModuleIdsPlugin());
 pluginsConfig.push(new webpack.DefinePlugin({
-    IS_PRODUCTION: false,
+    IS_PRODUCTION: true,
 }));
 module.exports = pluginsConfig;
