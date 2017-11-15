@@ -9,6 +9,7 @@ module.exports={
         lib:path.resolve(pathDir.root,"./src/lib"),
         root:pathDir.root,
         'resource':pathDir.resource,
+        'resourceDirTest':pathDir.resourceTest,
         vue:'vue/dist/vue.common.js'
     },
     extensions: ['.js', '.css', '.less','.vue'],
