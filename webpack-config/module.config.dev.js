@@ -1,27 +1,11 @@
 const moduleConfig = require("./baseConfig/module.config");
-var utils = require('./baseConfig/utils');
+const utils = require('./baseConfig/utils');
+const autoprefixer = require("autoprefixer");
 
-moduleConfig.rules.push(
-    {
-        test:/\.(sass|scss)$/,
-        use:['style-loader','css-loader','sass-loader']
-    }
-);
-
-
-moduleConfig.rules.push(
-    {
-        test:/\.less$/,
-        use:['style-loader','css-loader','less-loader']
-    }
-);
-
-moduleConfig.rules.push(
-    {
-        test:/\.css$/,
-        use:['style-loader','css-loader']
-    }
-);
+moduleConfig.rules.push(generateLoader("css"));
+moduleConfig.rules.push(generateLoader("scss","sass"));
+moduleConfig.rules.push(generateLoader("less","less"));
+moduleConfig.rules.push(generateLoader("styl","stylus"));
 
 moduleConfig.rules.push(
     {
@@ -37,9 +21,31 @@ moduleConfig.rules.push(
                 source: 'src',
                 img: 'src',
                 image: 'xlink:href'
-            }
+            },
         }
     }
 );
 
 module.exports = moduleConfig;
+
+
+function generateLoader(exp,loader) {
+    const filter = new RegExp(`\\.${exp}`);
+
+    let loaderList = ['style-loader','css-loader',{
+        loader:'postcss-loader',
+        options: {
+            sourceMap: true,
+            plugins: () => [autoprefixer({ browsers:['last 2 versions'] })],
+        },
+    }];
+
+    if(loader){
+        loaderList.push(`${loader}-loader`);
+    }
+
+    return{
+      test:filter,
+      use:loaderList
+    };
+}

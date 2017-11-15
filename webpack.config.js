@@ -10,5 +10,5 @@ module.exports={
     resolve:require('./webpack-config/baseConfig/resolve.config'),
     plugins:require("./webpack-config/webpack.plugs.dev"),
     devServer: require("./webpack-config/baseConfig/dev.server"),
-    devtool:'cheap-module-source-map',
+    //devtool:'cheap-module-source-map',
 };

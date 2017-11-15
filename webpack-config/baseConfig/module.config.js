@@ -1,4 +1,4 @@
-var eslintFormatter = require('eslint-friendly-formatter');
+//var eslintFormatter = require('eslint-friendly-formatter');
 var pathDir = require('../paramsConfig/path_dir');
 
 module.exports = {
@@ -7,22 +7,26 @@ module.exports = {
         {
             test:'/\.js$/',
             include:pathDir.src,
+            exclude: /node_modules/,
             use:[
                 {
                     loader:'babel-loader',
-                    options:{
+                    query:{
+                        presets:['env']
+                    }
+        /*            options:{
                         cacheDirectory: true,
                         plugins: ['transform-runtime'],
-                    }
+                    }*/
                 },
-                {
+   /*             {
                     loader:'eslint-loader',
                     options:{
                         formatter: eslintFormatter,
                         fix: true,
                     }
 
-                }
+                }*/
             ]
         },
         {

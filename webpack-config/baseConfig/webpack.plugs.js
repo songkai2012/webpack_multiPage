@@ -4,10 +4,10 @@ const pagesArr = require("../paramsConfig/pagesArr");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
 
-
 let plugsConf = [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.EnvironmentPlugin(['NODE_ENV']),
+
     new webpack.ProvidePlugin({
         $:'jquery',
         jQuery:'jquery',
