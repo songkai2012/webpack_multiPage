@@ -7,6 +7,11 @@ require("./vueInit");
 require("../style/style.js");
 import common from "./common.js";
 
+if(process.env.NODE_ENV=='server'){
+    if(module.hot) {
+        module.hot.accept();
+    }
+}
 
 export {
     common,

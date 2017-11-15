@@ -1,4 +1,5 @@
 var _ = require("resourceDirTest/scripts/index.js")._;
+require("./index.less");
 
 new vue({
     el:"#app",

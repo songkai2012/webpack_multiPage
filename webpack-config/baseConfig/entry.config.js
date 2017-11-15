@@ -5,7 +5,13 @@ var pagesDir = {};
 
 
 pagesArr.forEach((page) => {
-    pagesDir[page] = path.resolve(pathDir.pagesDir, page + '/index');
+    if(process.env.NODE_ENV=='server'){
+        var hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true';
+
+        pagesDir[page] = [path.resolve(pathDir.pagesDir, page + '/index'),hotMiddlewareScript ];
+    }else{
+        pagesDir[page] = [path.resolve(pathDir.pagesDir, page + '/index')];
+    }
 });
 
 module.exports = pagesDir;

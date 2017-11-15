@@ -3,11 +3,15 @@ const pathDir = require("../paramsConfig/path_dir");
 const pagesArr = require("../paramsConfig/pagesArr");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
+var Visualizer = require('webpack-visualizer-plugin');
+
+//const DashboardPlugin = require('webpack-dashboard/plugin');
 
 let plugsConf = [
+    new Visualizer(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.EnvironmentPlugin(['NODE_ENV']),
-
+    //new DashboardPlugin({ port: 8080 }),
     new webpack.ProvidePlugin({
         $:'jquery',
         jQuery:'jquery',
@@ -24,17 +28,20 @@ let plugsConf = [
         minChunks:Infinity
     }),*/
     new webpack.optimize.CommonsChunkPlugin({
-        name:'commons',
+        name:'common-chunk/css',
         chunks:pagesArr,
-        filename:'[name].[chunkhash:8].js',
+        filename:'common-chunk/js/common.[chunkhash:8].js',
         minChunks:2
     }),
     new webpack.optimize.CommonsChunkPlugin({
         name: 'webpack-runtime',
-        filename: 'webpack-runtime.[hash:8].js',
+        filename: 'common-chunk/js/webpack-runtime.[hash:8].js',
     }),
 ];
-
+if(process.env.NODE_ENV=='server'){
+    plugsConf.push(new webpack.HotModuleReplacementPlugin());
+    plugsConf.push(require('webpack-dashboard/plugin'));
+}
 
 pagesArr.forEach((page)=>{
     const htmlPage = new HtmlWebpackPlugin({
@@ -42,7 +49,7 @@ pagesArr.forEach((page)=>{
         template:path.resolve(pathDir.pagesDir,`${page}/page.html`),
         inject:'body',
         hash:true,
-        chunks:['webpack-runtime',page,'commons','vendor'],
+        chunks:['webpack-runtime',page,'common-chunk/css','vendor'],
     });
     plugsConf.push(htmlPage);
 });

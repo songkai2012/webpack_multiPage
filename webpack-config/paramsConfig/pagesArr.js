@@ -6,6 +6,6 @@ const option = {
     sync:true
 };
 
-const pathArr =new glob.Glob("!(_)*/",option);
+const pathArr =new glob.Glob("!(_)*",option);
 
 module.exports = pathArr.found;
