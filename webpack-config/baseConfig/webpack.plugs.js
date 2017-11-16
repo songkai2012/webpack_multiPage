@@ -3,9 +3,9 @@ const pathDir = require("../paramsConfig/path_dir");
 const pagesArr = require("../paramsConfig/pagesArr");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
-var Visualizer = require('webpack-visualizer-plugin');
+const Visualizer = require('webpack-visualizer-plugin');
 
-//const DashboardPlugin = require('webpack-dashboard/plugin');
+
 
 let plugsConf = [
     new Visualizer(),
@@ -40,7 +40,8 @@ let plugsConf = [
 ];
 if(process.env.NODE_ENV=='server'){
     plugsConf.push(new webpack.HotModuleReplacementPlugin());
-    plugsConf.push(require('webpack-dashboard/plugin'));
+    const dashboard = require('webpack-dashboard/plugin');
+    plugsConf.push( new dashboard);
 }
 
 pagesArr.forEach((page)=>{

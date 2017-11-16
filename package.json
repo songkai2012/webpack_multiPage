@@ -9,8 +9,8 @@
     "start": "set NODE_ENV=env&&webpack-dev-server --config ./webpack.config.js --open --hot --progress",
     "dev": "set NODE_ENV=env&&webpack-dev-server --config ./webpack.config.product.js --open --hot --progress",
     "dll": "webpack --config ./webpack-config/webpack.dll.js",
-    "dash": "webpack-dashboard -- node server.js",
-    "server": "set NODE_ENV=server&& supervisor -w src node server",
+    "dash": "set NODE_ENV=server&&webpack-dashboard -- node server.js",
+    "server": "set NODE_ENV=server&& supervisor -w src node server.js",
     "app": "node server"
   },
   "repository": {
