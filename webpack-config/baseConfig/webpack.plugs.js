@@ -40,8 +40,8 @@ let plugsConf = [
 ];
 if(process.env.NODE_ENV=='server'){
     plugsConf.push(new webpack.HotModuleReplacementPlugin());
-    const dashboard = require('webpack-dashboard/plugin');
-    plugsConf.push( new dashboard);
+    //const dashboard = require('webpack-dashboard/plugin');
+    //plugsConf.push(new dashboard({ port: 8001 }));
 }
 
 pagesArr.forEach((page)=>{
