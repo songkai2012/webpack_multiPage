@@ -1,9 +1,5 @@
-export  default {
-  add:(...params)=>{
-      let count = 0;
-      for(let i of params){
-          count+=i;
-      }
-      return count;
-}
+module.exports = {
+    getDate:(time)=>{
+        return new Date(time/1000);
+    }
 };

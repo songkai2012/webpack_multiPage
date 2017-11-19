@@ -5,7 +5,9 @@ export navFooter from 'resourceDir/components/footer/footer.vue';*/
 /*此为所有页面公共加载模块入口*/
 require("./vueInit");
 require("../style/style.js");
-import common from "./common.js";
+let _axios = require("./axios");
+let _js = require("./common");
+let _ = Object.assign(_axios,_js);
 
 if(process.env.NODE_ENV=='server'){
     if(module.hot) {
@@ -13,6 +15,6 @@ if(process.env.NODE_ENV=='server'){
     }
 }
 
-export {
-    common,
+module.exports = {
+    "common":_
 };
