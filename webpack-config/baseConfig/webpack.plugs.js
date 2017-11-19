@@ -8,7 +8,9 @@ var Visualizer = require('webpack-visualizer-plugin');
 //const DashboardPlugin = require('webpack-dashboard/plugin');
 
 let plugsConf = [
-    new Visualizer(),
+    new Visualizer({
+        filename:'../index-stats.html'
+    }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.EnvironmentPlugin(['NODE_ENV']),
     //new DashboardPlugin({ port: 8080 }),
@@ -40,7 +42,8 @@ let plugsConf = [
 ];
 if(process.env.NODE_ENV=='server'){
     plugsConf.push(new webpack.HotModuleReplacementPlugin());
-    plugsConf.push(require('webpack-dashboard/plugin'));
+/*    const dash = require('webpack-dashboard/plugin');
+    plugsConf.push(new dash());*/
 }
 
 pagesArr.forEach((page)=>{
