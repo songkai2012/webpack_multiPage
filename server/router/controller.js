@@ -16,4 +16,7 @@ router.get("/home",route.home);
 router.get("/test",route.test);
 router.get("/org",route.org);
 
+//管理员登录
+router.get("/adminLogin",route.adminLogin);
+
 module.exports = router;

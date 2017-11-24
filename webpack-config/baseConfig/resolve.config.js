@@ -6,11 +6,12 @@ const pathDir = require("../paramsConfig/path_dir");
 
 module.exports={
     alias:{
-        lib:path.resolve(pathDir.root,"./src/lib"),
+        jsMain:path.resolve(pathDir.root,"./src/pages/vendor/jsMain.js"),
         root:pathDir.root,
         'resource':pathDir.resource,
         'resourceDirTest':pathDir.resourceTest,
-        vue:'vue/dist/vue.common.js'
+        vue:'vue/dist/vue.common.js',
+        "elementUI":"element-ui",
     },
     extensions: ['.js', '.css', '.less','.vue'],
 };

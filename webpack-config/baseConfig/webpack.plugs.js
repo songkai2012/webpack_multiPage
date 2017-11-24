@@ -21,14 +21,15 @@ let plugsConf = [
         'window.jquery':'jquery',
         vue:'vue',
         Vue:'vue',
-        axios:'axios'
+        axios:'axios',
+        "elementUI":"element-ui"
     }),
- /*   new webpack.optimize.CommonsChunkPlugin({
+    new webpack.optimize.CommonsChunkPlugin({
         name:'vendor',
         chunks:['vendor'],
         filename:'dll.[chunkhash:8].js',
         minChunks:Infinity
-    }),*/
+    }),
     new webpack.optimize.CommonsChunkPlugin({
         name:'common-chunk/css',
         chunks:pagesArr,
@@ -47,14 +48,16 @@ if(process.env.NODE_ENV=='server'){
 }
 
 pagesArr.forEach((page)=>{
-    const htmlPage = new HtmlWebpackPlugin({
-        filename:`${page}/index.html`,
-        template:path.resolve(pathDir.pagesDir,`${page}/page.html`),
-        inject:'body',
-        hash:true,
-        chunks:['webpack-runtime',page,'common-chunk/css','vendor'],
-    });
-    plugsConf.push(htmlPage);
+    if(page!=='vendor'){
+        const htmlPage = new HtmlWebpackPlugin({
+            filename:`${page}/index.html`,
+            template:path.resolve(pathDir.pagesDir,`${page}/page.html`),
+            inject:'body',
+            hash:true,
+            chunks:['webpack-runtime',page,'common-chunk/css','vendor'],
+        });
+        plugsConf.push(htmlPage);
+    }
 });
 
 module.exports = plugsConf;

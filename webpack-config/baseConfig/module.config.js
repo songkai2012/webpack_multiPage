@@ -44,6 +44,10 @@ module.exports = {
                     }
                 }
             ]
+        },
+        {
+            test: /\.(woff|woff2|ttf|eot|svg|swf)$/,
+            loader: "file-loader?name=[name].[base64:7].[ext]"
         }
     ]
 };

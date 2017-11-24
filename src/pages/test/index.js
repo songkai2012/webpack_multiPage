@@ -1,4 +1,3 @@
-var _ = require("resourceDirTest/scripts/index.js")._;
 require("./index.less");
 
 new vue({
@@ -7,6 +6,6 @@ new vue({
         msg:1
     },
     created:function () {
-        this.msg=_.add(1,2,3,4);
+        //this.msg=_.add(1,2,3,4);
     }
 })
