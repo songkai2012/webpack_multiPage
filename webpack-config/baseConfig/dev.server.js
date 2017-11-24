@@ -6,7 +6,7 @@ module.exports = {
     hot: true, // 热启动
     compress: true,
     watchContentBase: false,
-    proxy:{
+/*    proxy:{
         "/":{
             target:"http://www.baidu.com/",
             changeOrigin:true,
@@ -15,5 +15,5 @@ module.exports = {
                 "origin":'http://www.baidu.com/',
             }
         }
-    }
+    }*/
 };

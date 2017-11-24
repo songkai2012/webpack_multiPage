@@ -14,5 +14,6 @@ router.get("/",function (req,res) {
 });
 router.get("/home",route.home);
 router.get("/test",route.test);
+router.get("/org",route.org);
 
 module.exports = router;
