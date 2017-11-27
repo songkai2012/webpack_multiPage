@@ -6,9 +6,13 @@
 </head>
 <body>
 <div id="app">
-    <h1>{{msg}}</h1>
-    <h1>{{msg}}</h1>
-    <el-input placeholder="请输入内容"></el-input>
+    <nav-header></nav-header>
+    <div class="container">
+        <el-input placeholder="请输入内容" v-model="userName"></el-input>
+        <el-input placeholder="请输入内容" v-model="userPwd"></el-input>
+        <el-button type="primary" @click="submit">确定</el-button>
+    </div>
+    <nav-footer></nav-footer>
 </div>
 </body>
 </html>
