@@ -1,20 +1,46 @@
 const express = require("express");
-const bodyParse = require("body-parser");
+const bodyParser = require("body-parser");
+const conf = require("../pro_conf");
 const cookieParse = require("cookie-parser");
-
+const sessioParser = require("express-session")
 var  router = express.Router();
 
-// 创建 application/json 解析
-var jsonParser = bodyParse.json()
 
-// 创建 application/x-www-form-urlencoded 解析
-var urlencodedParser = bodyParse.urlencoded({ extended: false })
+router.use(sessioParser({
+    "secret":"BLOG"
+}));
+router.use(cookieParse())
+router.use(bodyParser.raw());
+router.use(bodyParser.json());
+router.use(bodyParser.urlencoded({
+    extended: false
+}));
 
-router.post("/admin/adminLogin",jsonParser,function (req,res) {
-   const userMess = bodyParse(req.body);
-   console.log(JSON.stringify(userMess))
-   console.log(req.body)
 
-    res.send("success")
+
+router.post("/admin/adminLogin",function (req,res) {
+   // console.log(req.cookie.userName)
+    console.log(req.cookie)
+    req.session.user = {
+        name:"test",
+        pass:"test"
+    }
+    if(req.body.userName == conf.admin.name && req.body.userPwd == conf.admin.pwd){
+        res.cookie('userName',req.body.userName,{
+            expires:new Date(Date.now()+1000*60*60*24),
+            httpOnly:true,
+        })
+        res.send({
+            success:true,
+            code:0,
+            msg:"登录成功",
+        });
+    }else{
+        res.send({
+            success:false,
+            code:1,
+            msg:"登录失败",
+        });
+    }
 });
 module.exports = router;

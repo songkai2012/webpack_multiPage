@@ -66,6 +66,7 @@
     "eslint-friendly-formatter": "^3.0.0",
     "eslint-loader": "^1.9.0",
     "express": "^4.16.2",
+    "express-session": "^1.15.6",
     "file-loader": "^1.1.5",
     "jquery": "^3.2.1",
     "node-sass": "^4.6.0",
