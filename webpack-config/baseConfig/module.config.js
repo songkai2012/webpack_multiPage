@@ -46,7 +46,7 @@ module.exports = {
             ]
         },
         {
-            test: /\.(woff|woff2|ttf|eot|svg|swf)$/,
+            test: /\.(eot|woff|woff2|ttf)([\\?]?.*)$/,
             loader: "file-loader?name=[name].[base64:7].[ext]"
         }
     ]

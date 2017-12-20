@@ -13,24 +13,17 @@ new vue({
     methods:{
         submit:function () {
             const _this = this;
-            axios({
-                url:"/admin/adminLogin",
-                method:"post",
-                //headers:{'Content-Type': 'application/x-www-form-urlencoded'},
-                headers:{'Content-Type': 'application/json'},
-                data:{
-                    userName:_this.userName,
-                    userPwd:_this.userPwd
+
+            _this.$http.post("/admin/adminLogin",{
+                userName:_this.userName,
+                userPwd:_this.userPwd
+            },function (data) {
+                if(data){
+                    console.log(data);
+                }else{
+                    _this.$message("no data")
                 }
-            })
-/*            axios.post("/admin/adminLogin",{
-                params:{
-                    userName:_this.userName,
-                    userPwd:_this.userPwd
-                }
-            })*/
-                .then((res)=>{console.log(res)})
-                .catch((err)=>{console.log(err)})
+            });
         }
     }
 });

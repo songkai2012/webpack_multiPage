@@ -1,4 +1,4 @@
-require("./index.less");
+//require("./index.less");
 
 new vue({
     el:"#app",

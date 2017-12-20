@@ -28,8 +28,8 @@ baseModuleConfig.rules.push(
 baseModuleConfig.rules.push(
     {
         test: /\.css$/,
-        exclude: /node_modules|bootstrap/,
-        // loader: ExtractTextPlugin.extract('css?minimize&-autoprefixer!postcss'),
+        exclude: /bootstrap/,
+        //loader: ExtractTextPlugin.extract('css?minimize&-autoprefixer!postcss'),
         use: ExtractTextPlugin.extract(generateLoaders()),
     }
 );
